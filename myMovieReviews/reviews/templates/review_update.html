@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>리뷰 수정하기</h3>
+
+<form action="{% url 'reviews:review_update' review.id %}" method="post">
+    {% csrf_token %}
+    <div class="input"> 
+        <p class ="updateTittle">영화 제목</p>
+        <input name="title" placeholder="영화 제목" class="inputContent" value="{{review.title}}" required />
+    </div>
+    <div class="input">
+        <p class ="updateTittle">감독</p>
+        <input name="director" placeholder="감독" class="inputContent" value="{{review.director}}" required />
+    </div>
+    <div class="input">
+        <p class ="updateTittle">주연</p>
+        <input name="actor" placeholder="주연" class="inputContent" value="{{review.actor}}" required />
+    </div>
+    <div class="input">
+        <p class ="updateTittle">장르</p>
+        <input name="genre" placeholder="장르" class="inputContent" value="{{review.genre}}" required />
+    </div>
+    <div class="input">
+        <p class ="updateTittle">별점</p>
+        <input name="rating" placeholder="별점" type="number" step="0.5" min="0" max="5" class="inputContent" value="{{review.rating}}" required />
+    </div>
+    <div class="input">
+        <p class ="updateTittle">러닝타임</p>
+        <input name="runtime" placeholder="러닝타임(분)" type="number" class="inputContent" value="{{review.runtime}}" required />
+    </div>
+    <div class="input">
+        <p class ="updateTittle">개봉 년도</p>
+        <input name="release_year" placeholder="개봉 년도" type="number" class="inputContent" value="{{review.release_year}}" required />
+    </div>
+    <div class="input">
+        <p class ="updateTittle">리뷰 내용</p>
+        <textarea name="content" placeholder="리뷰 내용" rows="10" class="inputContent" required>{{review.content}}</textarea>
+    </div>
+    <button type="submit" class="endBtn">수정완료</button>
+    <a href="{% url 'reviews:review_detail' review.id %}" class="cancelBtn">취소</a>
+</form>
+
+{% endblock content %}

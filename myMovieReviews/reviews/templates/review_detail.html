@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="detailHeader">
+    <h3 class="detailTitle">리뷰 상세</h3>
+
+    <div class="detailButtons">
+        <a href="{% url 'reviews:review_update' review.id %}" class="btn updateDetailBtn">수정</a>
+
+        <form action="{% url 'reviews:review_delete' review.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn DeleteDetailBtn">삭제</button>
+        </form>
+    </div>
+</div>
+
+<hr>
+
+<div class="detailCard">
+    <div class="cardDetailBody">
+
+        <h5>영화 제목: {{review.title}}</h5>
+        <p>감독: {{review.director}}</p>
+        <p>주연: {{review.actor}}</p>
+        <p>장르: {{review.genre}}</p>
+        <p>별점: ⭐{{review.rating}}</p>
+        <p>러닝 타임: {{review.runtime}}</p>
+        <hr>
+
+        <p class="detailReviewContent">리뷰 내용</p>
+        <p>{{review.content}}</p>
+    </div>
+</div>
+
+<a href="{% url 'reviews:review_list' %}" class="toListBtn">목록으로</a>
+
+{% endblock content %}
