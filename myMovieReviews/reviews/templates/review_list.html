@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    <h1 class="logo">🎥MyMovieReviews🎥</h1>
+</header>
+<a href="{% url 'reviews:review_create' %}" class="createReviewBtn">✏️리뷰 작성하기✏️</a>
+<hr>
+<h3 class="main_title">영화 리뷰 목록</h3>
+
+
+
+{% for review in reviews %}
+<div class="card">
+    <div class="cardBody">
+        <h5 class="cardTitle">
+            <a href="{% url 'reviews:review_detail' review.id %}">{{review.title}}</a>
+        </h5>
+        <p class="cardText">
+            개봉 년도: {{review.release_year}} | 
+            장르: {{review.genre}} | 
+            별점: ⭐{{review.rating}}
+        </p>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock content %}
