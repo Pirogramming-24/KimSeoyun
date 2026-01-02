@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디어 목록</title>
+    <link rel="stylesheet" href="{% static 'ideas/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'ideas/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="headergrid">
+            <p>My <strong>SW Idea</strong> Manage</p>
+            <nav>
+                <a href="{% url 'ideas:idea_create' %}">아이디어 등록</a>
+                <a href="{% url 'ideas:idea_list' %}">아이디어 관리</a>
+                <a href="{% url 'ideas:devtool_create' %}">개발툴 등록</a>
+                <a href="{% url 'ideas:devtool_list' %}">개발툴 관리</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div id="ideaList">
+            <h1>Idea_List</h1>
+            <p>나의 아이디어를 잊지 말고 기록해보세요</p>
+
+            <!-- 정렬 select -->
+            <select id="sortSelect">
+                <option value="">-- 정렬 기준 --</option>
+                <option value="star" {% if current_sort == "star" %}selected{% endif %}>찜하기순</option>
+                <option value="name" {% if current_sort == "name" %}selected{% endif %}>이름순</option>
+                <option value="register" {% if current_sort == "register" %}selected{% endif %}>등록순</option>
+                <option value="latest" {% if current_sort == "latest" %}selected{% endif %}>최신순</option>
+            </select>
+
+            <ul>
+                {% for idea in ideas %}
+                    <li data-idea-id="{{ idea.pk }}">
+                        <a href="{% url 'ideas:idea_detail' idea.pk %}">
+                            {% if idea.img %}
+                                <img src="{{ idea.img.url }}" alt="이미지" width="300px">
+                            {% endif %}
+                            <!-- 찜 별 버튼 -->
+                            <button class="star-btn 
+                                {% if idea.starred %}starred{% endif %}"
+                                data-url="{% url 'ideas:toggle_star' idea.pk %}">
+                                ★
+                            </button>
+
+                            <div class="ideaListContent">
+                                <p>{{ forloop.counter }}번째 게시물</p>
+                                <span class = "IdeaListDiv"></span>
+                                <p>예상 개발 툴: {{ idea.devtool }}</p>
+
+                                <p>
+                                    아이디어 관심도: 
+                                    <button class="interest-btn" data-action="decrease">-</button>
+                                    <span class="interest-value">{{ idea.interest }}</span>
+                                    <button class="interest-btn" data-action="increase">+</button>
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                {% empty %}
+                    <li>등록된 아이디어가 없습니다.</li>
+                {% endfor %}
+            </ul>
+
+            <!-- 페이지네이션 -->
+            <div class="pagination">
+                {% if ideas.has_previous %}
+                    <a href="?page={{ ideas.previous_page_number }}{% if current_sort %}&sort={{ current_sort }}{% endif %}">이전</a>
+                {% endif %}
+                <span>페이지 {{ ideas.number }} / {{ ideas.paginator.num_pages }}</span>
+                {% if ideas.has_next %}
+                    <a href="?page={{ ideas.next_page_number }}{% if current_sort %}&sort={{ current_sort }}{% endif %}">다음</a>
+                {% endif %}
+            </div>
+        </div>
+    </main> 
+
+    <script src="{% static 'ideas/script/idea_list.js' %}"></script>
+</body>
+</html>

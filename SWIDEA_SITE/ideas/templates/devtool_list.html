@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>개발툴 목록</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ideas/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'ideas/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="headergrid">
+            <p>My <strong>SW Idea</strong> Manage</p>
+            <nav>
+                <a href="{% url 'ideas:idea_create' %}">아이디어 등록</a>
+                <a href="{% url 'ideas:idea_list' %}">아이디어 관리</a>
+                <a href="{% url 'ideas:devtool_create' %}">개발툴 등록</a>
+                <a href="{% url 'ideas:devtool_list' %}">개발툴 관리</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="devtoolList">
+            <div class="container">
+                <h1>DevTool List</h1>
+                <p class="info-text">개발툴 목록 페이지입니다. 자신이 사용하거나 개발중인 개발툴의 목록을 확인해 보세요.</p>
+
+                <ul>
+                    {% for devtool in devtools %}
+                    <li>
+                        <a href="{% url 'ideas:devtool_detail' devtool.pk %}">{{ devtool.name }} {{ devtool.kind }} {{ devtool.content }}</a>
+                        <span class="devtool-description">{{ devtool.description }}</span>
+                    </li>
+                    {% empty %}
+                    <li>등록된 개발툴이 없습니다.</li>
+                    {% endfor %}
+                </ul>
+
+                <div class="pagination">
+                    <span class="current">①</span>
+                    <a href="#">〉</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

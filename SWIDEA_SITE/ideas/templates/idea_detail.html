@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디어 디테일</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ideas/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'ideas/style.css' %}">
+
+</head>
+<body>
+    <header>
+        <div class="headergrid">
+            <p>My <strong>SW Idea</strong> Manage</p>
+            <nav>
+                <a href="{% url 'ideas:idea_create' %}">아이디어 등록</a>
+                <a href="{% url 'ideas:idea_list' %}">아이디어 관리</a>
+                <a href="{% url 'ideas:devtool_create' %}">개발툴 등록</a>
+                <a href="{% url 'ideas:devtool_list' %}">개발툴 관리</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="ideaDetail">
+         <div class="idea-box">>
+        
+
+        <h2 class="page-title">Idea Detail</h2>
+        <p class="page-sub">
+            아이디어의 상세 정보를 확인할 수 있습니다. 수정 및 삭제가 가능합니다.
+        </p>
+        
+        
+        <button class="star-btn 
+            {% if idea.starred %}starred{% endif %}"
+            data-url="{% url 'ideas:toggle_star' idea.pk %}">
+            ★
+        </button>
+
+
+
+
+            {% if idea.img %}
+                <img src="{{ idea.img.url }}" class="idea-img">
+            {% endif %}
+
+            <h2 class="idea-title">{{ idea.title }}</h2>
+
+            <div class="idea-info">
+                <p><strong>① 아이디어 내용</strong></p>
+                <p class="idea-content">{{ idea.content }}</p>
+
+                <p><strong>② 관심도</strong></p>
+                <p>{{ idea.interest }}</p>
+
+                <p><strong>③ 개발도구</strong></p>
+                <p>{{ idea.devtool }}</p>
+            </div>
+
+            <div class="btn-area">
+                <a href="{% url 'ideas:idea_delete' idea.pk %}" class="btn delete">삭제</a>
+                <a href="{% url 'ideas:idea_list' %}" class="btn list">목록</a>
+                <a href="{% url 'ideas:idea_update' idea.pk %}" class="btn update">수정</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="{% static 'ideas/script/idea_list.js' %}"></script>
+</html>
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디어 수정</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ideas/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'ideas/style.css' %}">
+</head>
+
+<body>
+<header>
+    <div class="headergrid">
+        <p>My <strong>SW Idea</strong> Manage</p>
+        <nav>
+            <a href="{% url 'ideas:idea_create' %}">아이디어 등록</a>
+            <a href="{% url 'ideas:idea_list' %}">아이디어 관리</a>
+            <a href="{% url 'ideas:devtool_create' %}">개발툴 등록</a>
+            <a href="{% url 'ideas:devtool_list' %}">개발툴 관리</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+<section class="ideaCreate">
+    <h1>Idea Update</h1>
+    <p>아이디어 수정 페이지 입니다. 내용을 수정하고 저장하세요!</p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <p>
+            <p>아이디어명:</p>
+            <input type="text" name="title" value="{{ idea.title }}">
+        </p>
+
+        <p>
+            <p>현재 이미지:</p>
+            {% if idea.img %}
+                <img src="{{ idea.img.url }}" width="200">
+            {% else %}
+                <p>이미지가 없습니다.</p>
+            {% endif %}
+        </p>
+
+        <p>
+            <p>이미지 변경:</p>
+            <input type="file" name="img">
+        </p>
+
+        <p>
+            <p>아이디어 설명:</p>
+            <textarea name="content">{{ idea.content }}</textarea>
+        </p>
+
+        <p>
+            <p>아이디어 관심도:</p>
+            <input type="number" name="interest" value="{{ idea.interest }}">
+        </p>
+
+        <p>
+            <p>개발툴:</p>
+            <select id="devtool" name="devtool" required>
+                <option value="">------</option>
+                {% for tool in devtools %}
+                    <option value="{{ tool.name }}" 
+                        {% if idea.devtool == tool.name %}selected{% endif %}>
+                        {{ tool.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </p>
+
+        <button type="submit">수정 완료</button>
+    </form>
+</section>
+</main>
+
+</body>
+</html>
