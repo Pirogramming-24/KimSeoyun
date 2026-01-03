@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>개발툴 디테일</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ideas/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'ideas/style.css' %}">
+
+</head>
+
+<body>
+    <body>
+    <header>
+        <div class="headergrid">
+            <p>My <strong>SW Idea</strong> Manage</p>
+            <nav>
+                <a href="{% url 'ideas:idea_create' %}">아이디어 등록</a>
+                <a href="{% url 'ideas:idea_list' %}">아이디어 관리</a>
+                <a href="{% url 'ideas:devtool_create' %}">개발툴 등록</a>
+                <a href="{% url 'ideas:devtool_list' %}">개발툴 관리</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="devtoolDetail">
+            <h2 class="page-title">DevTool Detail</h2>
+            <p class="page-sub">
+                개발툴의 상세 정보를 확인할 수 있습니다. 수정 또는 삭제가 가능합니다.
+            </p>
+
+            <div class="devtool-box">
+
+                {% if devtool.image %}
+                    <img src="{{ devtool.image.url }}" class="devtool-img">
+                {% endif %}
+
+                <h2 class="devtool-title">{{ devtool.name }}</h2>
+
+                <div class="devtool-info">
+                    <p><strong>① 개발툴 종류</strong></p>
+                    <p>{{ devtool.kind }}</p>
+
+                    <p><strong>② 개발툴 설명</strong></p>
+                    <p class="devtool-content">{{ devtool.content }}</p>
+                </div>
+
+                <div class="btn-area">
+                    <a href="{% url 'ideas:devtool_delete' devtool.pk %}" class="btn delete">삭제</a>
+                    <a href="{% url 'ideas:devtool_list' %}" class="btn list">목록</a>
+                    <a href="{% url 'ideas:devtool_update' devtool.pk %}" class="btn update">수정</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+
+</html>

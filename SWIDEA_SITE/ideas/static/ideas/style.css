@@ -1,0 +1,388 @@
+/* ================================
+   GLOBAL
+================================ */
+body {
+    color: #fff;
+    font-family: Arial, sans-serif;
+    background: url(https://cdn.pixabay.com/photo/2015/12/04/14/05/code-1076536_640.jpg) 
+                center / cover no-repeat fixed;
+}
+
+/* ================================
+   HEADER
+================================ */
+header {
+    background: #0f0f0f;
+    padding: 15px 40px;
+}
+
+.headergrid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headergrid p { font-size: 18px; }
+.headergrid strong { color: #aaff00; }
+
+header nav a {
+    margin-left: 200px;
+    font-size: 20px;
+    color: #ddd;
+    text-decoration: none;
+}
+
+/* ================================
+   MAIN LAYOUT
+================================ */
+main {
+    background: rgba(128, 128, 128, 0.8);
+    padding: 30px 20px;
+    min-height: 400px;
+    width: 1000px;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ================================
+   COMMON TITLES / TEXT
+================================ */
+#ideaList h1,
+.ideaCreate h1,
+.devtoolList h1,
+.devtoolCreate h1 {
+    text-align: center;
+    color: #eaff7a;
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px #0f0f0f;
+}
+
+#ideaList > p,
+.ideaCreate p:first-of-type,
+.devtoolList .info-text,
+.devtoolCreate .info-text {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 1px 1px 4px #0f0f0f;
+}
+
+/* 공통 페이지 타이틀 */
+.page-title {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.page-sub {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+/* 공통 버튼 */
+.btn-area {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn {
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+}
+
+.btn.list { background: #777; }
+.btn.update { background: #2980b9; }
+.btn.delete { background: #c0392b; }
+.btn:hover { opacity: 0.8; }
+
+/* ================================
+   IDEA LIST
+================================ */
+#ideaList {
+    background: rgba(200, 200, 200, 0.6);
+    padding: 30px;
+}
+
+#ideaList select {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 30px;
+    padding: 5px 10px;
+}
+
+#ideaList ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+#ideaList li {
+    background: #cfe9f6;
+    padding: 15px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 0 8px rgba(0,0,0,0.15);
+}
+
+#ideaList img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+#ideaList li p {
+    font-size: 13px;
+    margin: 5px 0;
+    color: #333;
+}
+
+#ideaList li p:first-of-type { font-weight: bold; }
+
+/* 찜 별 */
+.star-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: #bbb;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.star-btn.starred { color: #ffcc00; }
+
+/* 관심도 */
+.interest-btn {
+    background: #0f0f0f;
+    border: none;
+    color: #aaff00;
+    font-weight: bold;
+    padding: 2px 8px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.interest-value {
+    font-weight: bold;
+    color: #333;
+    min-width: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+/* ================================
+   IDEA CREATE
+================================ */
+.ideaCreate {
+    width: 600px;
+    padding: 20px 30px;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.ideaCreate form p { margin-bottom: 18px; }
+
+.ideaCreate input,
+.ideaCreate textarea,
+.ideaCreate select {
+    width: 100%;
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.ideaCreate textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.ideaCreate button {
+    width: 100px;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    color: #fff;
+    background: none;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+
+/* ================================
+   DEVTOOL LIST
+================================ */
+.devtoolList .container {
+    padding: 40px;
+    border: 1px solid #fff;
+}
+
+.devtoolList ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.devtoolList ul li {
+    padding: 15px;
+    border-bottom: 1px solid #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.devtoolList ul li a {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+
+.devtoolList .devtool-description {
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+/* 페이지네이션 */
+.pagination {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.pagination .current { font-weight: bold; }
+.pagination a { color: #fff; text-decoration: none; }
+
+/* 등록 버튼 */
+.btn-register {
+    display: inline-block;
+    background: #4a90e2;
+    color: #fff;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+/* ================================
+   DEVTOOL CREATE
+================================ */
+.devtoolCreate {
+    width: 600px;
+    padding: 20px 30px;
+}
+
+.devtoolCreate form {
+    display: flex;
+    flex-direction: column;
+}
+
+.devtoolCreate label {
+    margin: 18px 0 6px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.devtoolCreate input[type="text"],
+.devtoolCreate textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    background: rgba(255,255,255,0.9);
+}
+
+.devtoolCreate textarea { height: 120px; resize: none; }
+
+.devtoolCreate input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* ================================
+   DETAIL PAGES (공통)
+================================ */
+.devtoolDetail,
+.ideaDetail {
+    width: 100%;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 공통 카드 박스 */
+.devtool-box,
+.idea-box {
+    width: 900px;
+    padding: 40px;
+    text-align: center;
+    border-radius: 5px;
+    background: rgba(0,0,0,0.6);
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+/* 이미지 */
+.devtool-img,
+.idea-img {
+    width: 250px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* 타이틀 */
+.devtool-title,
+.idea-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* 정보 영역 */
+.devtool-info,
+.idea-info {
+    width: 80%;
+    margin: 0 auto 25px;
+    text-align: left;
+}
+
+.devtool-info p,
+.idea-info p {
+    margin: 8px 0;
+}
+
+.devtool-content,
+.idea-content {
+    height: 120px;
+    padding: 10px;
+    overflow-y: auto;
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+
+.idea-box {
+    position: relative;
+}

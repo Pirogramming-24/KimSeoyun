@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>개발툴 등록</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ideas/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'ideas/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="headergrid">
+            <p>My <strong>SW Idea</strong> Manage</p>
+            <nav>
+                <a href="{% url 'ideas:idea_create' %}">아이디어 등록</a>
+                <a href="{% url 'ideas:idea_list' %}">아이디어 관리</a>
+                <a href="{% url 'ideas:devtool_create' %}">개발툴 등록</a>
+                <a href="{% url 'ideas:devtool_list' %}">개발툴 관리</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="devtoolCreate">
+            <h1>DevTool Register</h1>
+            <p class="info-text">개발툴 등록 페이지입니다. 자신이 아는 수 있는 개발툴을 등록해 보세요.</p>
+
+            <form method="POST" action="{% url 'ideas:devtool_create' %}">
+                {% csrf_token %}
+                <label for="name">이름:</label>
+                <input type="text" id="name" name="name" required />
+
+                <label for="category">종류:</label>
+                <input type="text" id="category" name="kind" required />
+
+                <label for="description">개발툴 설명:</label>
+                <textarea id="description" name="content" required></textarea>
+
+                <input type="submit" value="SUBMIT" />
+            </form>
+        </div>
+    </main>
+</body>
+</html>
+
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디어 작성</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ideas/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'ideas/style.css' %}">
+
+</head>
+<body>
+    <header>
+        <div class="headergrid">
+            <p>My <strong>SW Idea</strong> Manage</p>
+            <nav>
+                <a href="{% url 'ideas:idea_create' %}">아이디어 등록</a>
+                <a href="{% url 'ideas:idea_list' %}">아이디어 관리</a>
+                <a href="{% url 'ideas:devtool_create' %}">개발툴 등록</a>
+                <a href="{% url 'ideas:devtool_list' %}">개발툴 관리</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="ideaCreate">
+        <h1>Idea Register</h1>
+        <p>아이디어 등록페이지 입니다. 아이디어를 잊지 말고 기록하세요!</p>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <p>
+                    <p>아이디어명:</p>
+                    <input type="text" name="title">
+                </p>
+
+                <p>
+                    <p>이미지:</p>
+                    <input type="file" name="img">
+                </p>
+
+                <p>
+                    <p>아이디어설명:</p>
+                    <textarea name="content"></textarea>
+                </p>
+
+                <p>
+                    <p>아이디어관심도:</p>
+                    <input type="number" name="interest">
+                </p>
+
+                <p>
+
+                    <p>개발툴:</p>
+                    <select id="devtool" name="devtool" required>
+                        <option value="">------</option>
+                        {% for tool in devtools %}
+                        <option value="{{ tool.name }}">{{ tool.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                </p>
+
+                <button type="submit">submit</button>
+            </form>
+        </section>
+    </main>
+    
+</body>
+</html>
